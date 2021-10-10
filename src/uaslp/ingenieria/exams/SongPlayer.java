@@ -2,19 +2,22 @@ package uaslp.ingenieria.exams;
 
 import uaslp.ingenieria.exams.instruments.*;
 
+import java.io.File;
 import java.util.Iterator;
+import java.util.LinkedList;
+import java.util.List;
 
-public class SongPlayer {
+public class SongPlayer{
 
-    public void play(Song song, Instrumento instrumento) {
+
+    public static void play(Song song, List<Instrumentos> listaInstrumentos) {
 
         Iterator<Nota> notas = song.getSongIterator();
-        Piano piano = new Piano();
-        Guitarra guitarra = new Guitarra();
-        Violin violin = new Violin();
-        Flauta flauta = new Flauta();
 
-        while (notas.hasNext()) {
+
+
+       Intrumentos(listaInstrumentos, notas);
+        /*while (notas.hasNext()) {
             Nota nota = notas.next();
 
             switch (instrumento) {
@@ -24,8 +27,21 @@ public class SongPlayer {
                 case GUITARRA -> guitarra.tocaCuerda(nota);
                 default -> System.out.println("Instrumento no soportado");
             }
+        }*/
+
+    }
+
+    public static void Intrumentos(List<Instrumentos> items, Iterator<Nota> notas) {
+
+        while(notas.hasNext()){
+            Nota nota= notas.next();
+            for (Instrumentos item : items) {
+                System.out.println(item.getName());
+                item.tocar(nota);
+            }
         }
 
     }
+
 
 }
